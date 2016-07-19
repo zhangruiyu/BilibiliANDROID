@@ -2,8 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_game"
+        android:icon="@drawable/ic_menu_top_game_center"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="游戏"
+        app:showAsAction="always" />
+    <item
+        android:title="下载"
+        android:id="@+id/action_download"
+        android:icon="@drawable/ic_toolbar_menu_download"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item
+        android:title="搜索"
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_toolbar_menu_search"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
 </menu>

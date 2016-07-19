@@ -1,36 +1,38 @@
 package android.bilibili.com.bilibiliandroid;
 
+import android.bilibili.com.bilibiliandroid.base.BaseActivity;
+import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageFragment;
+import android.bilibili.com.bilibiliandroid.modular.homepage.HomepagePresenter;
+import android.bilibili.com.bilibiliandroid.utils.ActivityUtils;
+import android.bilibili.com.bilibiliandroid.utils.ThemeUtils;
+import android.bilibili.com.bilibiliandroid.utils.UIUtils;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private int theme = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //切换主题必须放在onCreate()之前
+        if (savedInstanceState == null) {
+            theme = ThemeUtils.getAppTheme(MainActivity.this);
+        } else {
+            theme = savedInstanceState.getInt("theme");
+        }
+        setTheme(theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         toolbar.setLogo(R.mipmap.ic_launcher);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -40,6 +42,20 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        HomepageFragment homepageFragment =
+                (HomepageFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        if (homepageFragment == null) {
+            homepageFragment = homepageFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(
+                    getSupportFragmentManager(), homepageFragment, R.id.contentFrame);
+        }
+        HomepagePresenter homepagePresenter = new HomepagePresenter(homepageFragment);
+     /* TasksViewModel tasksViewModel =
+             new TasksViewModel(getApplicationContext(), mTasksPresenter);
+     homepageFragment.setViewModel(tasksViewModel);*/
+
     }
 
     @Override
@@ -67,7 +83,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_download) {
+            UIUtils.showToast("下载");
             return true;
         }
 
@@ -80,22 +97,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_theme) {
+            ThemeUtils.switchAppTheme(MainActivity.this);
+            Intent intent = getIntent();
+            overridePendingTransition(R.anim.activity_select_theme_in, R.anim.activity_select_theme_out);//进入动画
+            finish();
+            overridePendingTransition(R.anim.activity_select_theme_in, R.anim.activity_select_theme_out);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
