@@ -1,0 +1,2 @@
+侧拉栏的menu group要加id才可以显示出横杠
+toolbar头像显示要传入drawble  需要给图片缩小  字的大小也要修改
