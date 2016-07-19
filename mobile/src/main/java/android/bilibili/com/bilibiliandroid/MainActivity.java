@@ -3,16 +3,22 @@ package android.bilibili.com.bilibiliandroid;
 import android.bilibili.com.bilibiliandroid.base.BaseActivity;
 import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageFragment;
 import android.bilibili.com.bilibiliandroid.modular.homepage.HomepagePresenter;
+import android.bilibili.com.bilibiliandroid.ui.CircleImageDrawable;
 import android.bilibili.com.bilibiliandroid.utils.ActivityUtils;
+import android.bilibili.com.bilibiliandroid.utils.BitmapUtils;
 import android.bilibili.com.bilibiliandroid.utils.ThemeUtils;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -32,8 +38,8 @@ public class MainActivity extends BaseActivity
         setTheme(theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar.setLogo(R.mipmap.ic_launcher);
-
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        toolbar.setLogo(new CircleImageDrawable(BitmapUtils.small(bitmap)));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -47,7 +53,7 @@ public class MainActivity extends BaseActivity
         HomepageFragment homepageFragment =
                 (HomepageFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
         if (homepageFragment == null) {
-            homepageFragment = homepageFragment.newInstance();
+            homepageFragment = HomepageFragment.newInstance();
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), homepageFragment, R.id.contentFrame);
         }
@@ -57,7 +63,6 @@ public class MainActivity extends BaseActivity
      homepageFragment.setViewModel(tasksViewModel);*/
 
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

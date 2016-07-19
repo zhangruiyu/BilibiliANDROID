@@ -25,6 +25,9 @@ android {
     dataBinding {
         enabled true
     }
+    sourceSets{
+        main.res.srcDirs = ['src/main/res/modular/homepage','src/main/res/modular/favorite','src/main/res']
+    }
 }
 
 dependencies {
