@@ -8,6 +8,7 @@ import android.bilibili.com.bilibiliandroid.modular.discover.DiscoverpageFragmen
 import android.bilibili.com.bilibiliandroid.modular.livepage.LivepageFragment;
 import android.bilibili.com.bilibiliandroid.modular.newdramapage.NewdramapageFragment;
 import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpageFragment;
+import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpagePresenter;
 import android.bilibili.com.bilibiliandroid.modular.subarea.SubareapageFragment;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
 import android.databinding.DataBindingUtil;
@@ -48,6 +49,7 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
             allpageAdapter.notifyDataSetChanged();
         }
         homepageFragmentBinding.tlHomepageAllbutton.setupWithViewPager(homepageFragmentBinding.vpHomepageAllpage);
+        homepageFragmentBinding.vpHomepageAllpage.setCurrentItem(0);
         return homepageFragmentBinding.getRoot();
     }
 
@@ -64,8 +66,13 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
 
         @Override
         public Fragment getItem(int position) {
-            return new RecommendpageFragment();
+            if (position == 0) {
+                RecommendpageFragment recommendpageFragment = new RecommendpageFragment();
+                new RecommendpagePresenter(recommendpageFragment);
+                return recommendpageFragment;
+            } else return new LivepageFragment();
         }
+
         //必须要重写这句,tablayout和viewpage关联时会删除之前的tabitem,重新调用这个方法 弄新标题
         @Override
         public CharSequence getPageTitle(int position) {

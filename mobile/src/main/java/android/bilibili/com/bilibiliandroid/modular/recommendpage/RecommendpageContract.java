@@ -11,5 +11,6 @@ public interface RecommendpageContract {
 
     }
     interface Persenter extends BasePresenter{
+        void onloadRecommendItem();
     }
 }
