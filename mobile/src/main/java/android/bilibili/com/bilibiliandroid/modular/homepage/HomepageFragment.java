@@ -2,9 +2,21 @@ package android.bilibili.com.bilibiliandroid.modular.homepage;
 
 import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.base.BaseFragment;
+import android.bilibili.com.bilibiliandroid.databinding.HomepageFragmentBinding;
+import android.bilibili.com.bilibiliandroid.modular.attention.AttentionpageFragment;
+import android.bilibili.com.bilibiliandroid.modular.discover.DiscoverpageFragment;
+import android.bilibili.com.bilibiliandroid.modular.livepage.LivepageFragment;
+import android.bilibili.com.bilibiliandroid.modular.newdramapage.NewdramapageFragment;
+import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpageFragment;
+import android.bilibili.com.bilibiliandroid.modular.subarea.SubareapageFragment;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +24,11 @@ import android.view.ViewGroup;
 /**
  * Created by ZRY on 2016/7/19.
  */
-public class HomepageFragment extends BaseFragment implements HomepageContract.View{
-
+public class HomepageFragment extends BaseFragment implements HomepageContract.View {
     private HomepageContract.Persenter mPersenter;
+    private AllpageAdapter allpageAdapter;
+    private String[] stringArray;
+    Class[] allpageClasses = {LivepageFragment.class, RecommendpageFragment.class, NewdramapageFragment.class, SubareapageFragment.class, AttentionpageFragment.class, DiscoverpageFragment.class};
 
     public static HomepageFragment newInstance() {
         return new HomepageFragment();
@@ -23,12 +37,44 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = UIUtils.inflate(R.layout.homepage_fragment);
-        return inflate;
+        HomepageFragmentBinding homepageFragmentBinding = HomepageFragmentBinding.inflate(inflater, container, false);
+        stringArray = getResources().getStringArray(R.array.homepage_allbutton);
+        homepageFragmentBinding.setHomepageModel(new HomepageModel());
+
+        if (allpageAdapter == null) {
+            allpageAdapter = new AllpageAdapter(getFragmentManager());
+            homepageFragmentBinding.vpHomepageAllpage.setAdapter(allpageAdapter);
+        } else {
+            allpageAdapter.notifyDataSetChanged();
+        }
+        homepageFragmentBinding.tlHomepageAllbutton.setupWithViewPager(homepageFragmentBinding.vpHomepageAllpage);
+        return homepageFragmentBinding.getRoot();
     }
 
     @Override
     public void setPresenter(HomepageContract.Persenter presenter) {
         mPersenter = presenter;
+    }
+
+    class AllpageAdapter extends FragmentStatePagerAdapter {
+
+        public AllpageAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return new RecommendpageFragment();
+        }
+        //必须要重写这句,tablayout和viewpage关联时会删除之前的tabitem,重新调用这个方法 弄新标题
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return stringArray[position];
+        }
+
+        @Override
+        public int getCount() {
+            return stringArray.length;
+        }
     }
 }

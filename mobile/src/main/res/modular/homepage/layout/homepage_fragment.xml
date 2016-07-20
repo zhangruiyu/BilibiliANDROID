@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</LinearLayout>
+    <data>
+
+        <variable
+            name="homepageModel"
+            type="android.bilibili.com.bilibiliandroid.modular.homepage.HomepageModel" />
+        <variable
+            name="homepagePersenter"
+            type="android.bilibili.com.bilibiliandroid.modular.homepage.HomepageContract.Persenter"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_homepage_allbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:tabGravity="fill"
+            app:tabSelectedTextColor="@color/white_text"
+            app:tabTextColor="@color/control_normal_blue"
+            app:tabMode="fixed">
+
+        </android.support.design.widget.TabLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swp_homepage_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_homepage_allpage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+</layout>

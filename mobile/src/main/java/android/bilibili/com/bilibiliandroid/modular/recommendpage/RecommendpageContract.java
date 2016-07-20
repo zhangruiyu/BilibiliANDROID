@@ -1,4 +1,4 @@
-package android.bilibili.com.bilibiliandroid.modular.homepage;
+package android.bilibili.com.bilibiliandroid.modular.recommendpage;
 
 import android.bilibili.com.bilibiliandroid.base.BasePresenter;
 import android.bilibili.com.bilibiliandroid.base.BaseView;
@@ -6,7 +6,7 @@ import android.bilibili.com.bilibiliandroid.base.BaseView;
 /**
  * Created by ZRY on 2016/7/19.
  */
-public interface HomepageContract {
+public interface RecommendpageContract {
     interface View extends BaseView<Persenter>{
 
     }
