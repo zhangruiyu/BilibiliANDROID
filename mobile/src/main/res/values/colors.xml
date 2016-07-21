@@ -223,4 +223,11 @@
 
 
     <color name="refresh_bg">#B3E5FC</color> <!-- 500 -->
+
+    <color name="icons">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="super_light_grey">#FAFAFA</color>
+    <color name="line_grey">#D7D7D7</color>
+    <color name="black_87pc">#DD000000</color>
+    <color name="scrim">#99323232</color>
 </resources>

@@ -80,7 +80,7 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
 
         @Override
         public Fragment getItem(int position) {
-            if (position == 0) {
+            if (position == 1) {
                 RecommendpageFragment recommendpageFragment = new RecommendpageFragment();
                 new RecommendpagePresenter(recommendpageFragment);
                 return recommendpageFragment;

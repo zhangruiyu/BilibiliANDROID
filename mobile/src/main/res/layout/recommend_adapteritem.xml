@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="recommend_item"
+            type="android.bilibili.com.bilibiliandroid.modular.recommendpage.data.RecommendItem.ResultEntity" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/iv_recommend_head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/recycleview_touchbg"
+            android:paddingLeft="15dp">
+
+            <ImageView
+                android:id="@+id/iv_recommend_headicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_header_hot" />
+
+            <TextView
+                android:id="@+id/iv_recommend_headtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_recommend_headicon"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/iv_recommend_headicon"
+                android:layout_toRightOf="@+id/iv_recommend_headicon"
+                android:text="热门推荐"
+                android:textColor="@color/black_text" />
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_recommend_content_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_recommend_head" />
+    </RelativeLayout>
+</layout>
