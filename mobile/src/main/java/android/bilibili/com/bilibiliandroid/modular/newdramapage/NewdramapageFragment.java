@@ -5,5 +5,9 @@ import android.bilibili.com.bilibiliandroid.base.BaseFragment;
 /**
  * Created by ZRY on 2016/7/20.
  */
-public class NewdramapageFragment extends BaseFragment{
+public class NewdramapageFragment extends BaseFragment implements NewdramadpageContract.View{
+    @Override
+    public void setPresenter(NewdramadpageContract.Persenter presenter) {
+
+    }
 }

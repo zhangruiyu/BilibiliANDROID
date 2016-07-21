@@ -6,9 +6,9 @@ import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageFragment;
 /**
  * Created by ZRY on 2016/7/19.
  */
-public class SubareapagePresenter implements HomepageContract.Persenter {
-    public SubareapagePresenter(HomepageFragment homepageFragment) {
-        homepageFragment.setPresenter(this);
+public class SubareapagePresenter implements SubareapageContract.Persenter {
+    public SubareapagePresenter(SubareapageFragment subareapageFragment) {
+        subareapageFragment.setPresenter(this);
     }
 
     @Override

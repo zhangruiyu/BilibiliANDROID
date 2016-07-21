@@ -6,9 +6,9 @@ import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageFragment;
 /**
  * Created by ZRY on 2016/7/19.
  */
-public class NewdramapagePresenter implements HomepageContract.Persenter {
-    public NewdramapagePresenter(HomepageFragment homepageFragment) {
-        homepageFragment.setPresenter(this);
+public class NewdramapagePresenter implements NewdramadpageContract.Persenter {
+    public NewdramapagePresenter(NewdramapageFragment newdramapageFragment) {
+        newdramapageFragment.setPresenter(this);
     }
 
     @Override

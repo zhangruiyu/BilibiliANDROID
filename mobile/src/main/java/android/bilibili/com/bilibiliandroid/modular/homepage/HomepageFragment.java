@@ -18,6 +18,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,13 +50,26 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
             allpageAdapter.notifyDataSetChanged();
         }
         homepageFragmentBinding.tlHomepageAllbutton.setupWithViewPager(homepageFragmentBinding.vpHomepageAllpage);
-        homepageFragmentBinding.vpHomepageAllpage.setCurrentItem(0);
+        homepageFragmentBinding.setHomepageModel(new HomepageModel());
+
+        homepageFragmentBinding.vpHomepageAllpage.setCurrentItem(1);
         return homepageFragmentBinding.getRoot();
     }
 
     @Override
     public void setPresenter(HomepageContract.Persenter presenter) {
         mPersenter = presenter;
+    }
+
+    @Override
+    public void setLoadingIndicator(boolean active) {
+        if (getView() == null) {
+            return;
+        }
+        final SwipeRefreshLayout srl =
+                (SwipeRefreshLayout) getView().findViewById(R.id.swp_homepage_refresh);
+
+        srl.post(() -> srl.setRefreshing(active));
     }
 
     class AllpageAdapter extends FragmentStatePagerAdapter {

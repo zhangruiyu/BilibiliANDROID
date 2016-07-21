@@ -12,7 +12,7 @@ import android.widget.TextView;
 /**
  * Created by ZRY on 2016/7/20.
  */
-public class LivepageFragment extends BaseFragment {
+public class LivepageFragment extends BaseFragment implements LivepageContract.View{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -20,5 +20,10 @@ public class LivepageFragment extends BaseFragment {
         textView.setText("ahha");
         textView.setTextColor(getResources().getColor(R.color.action_blue));
         return textView;
+    }
+
+    @Override
+    public void setPresenter(LivepageContract.Persenter presenter) {
+
     }
 }

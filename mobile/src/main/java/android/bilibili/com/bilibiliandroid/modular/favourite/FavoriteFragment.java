@@ -8,12 +8,12 @@ import static android.bilibili.com.bilibiliandroid.utils.Precondition.checkNotNu
 /**
  * Created by ZRY on 2016/7/19.
  */
-public class FavoriteFragment extends BaseFragment implements HomepageContract.View{
+public class FavoriteFragment extends BaseFragment implements FavoritepageContract.View{
 
-    private HomepageContract.Persenter persenter;
+    private FavoritepageContract.Persenter persenter;
 
     @Override
-    public void setPresenter(HomepageContract.Persenter presenter) {
+    public void setPresenter(FavoritepageContract.Persenter presenter) {
         persenter = checkNotNull(presenter);
     }
 }
