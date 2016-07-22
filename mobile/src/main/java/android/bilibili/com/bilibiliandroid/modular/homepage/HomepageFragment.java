@@ -14,10 +14,8 @@ import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpageP
 import android.bilibili.com.bilibiliandroid.modular.subarea.SubareapageFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

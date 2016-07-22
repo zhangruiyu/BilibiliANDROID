@@ -33,7 +33,6 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
 
     public RecommendAdapter(List<RecommendItem.ResultEntity> resultEntity, RecommendpageContract.Persenter mPersenter) {
         this.mPersenter = mPersenter;
-        replace(resultEntity);
     }
 
     @Override
