@@ -38,7 +38,7 @@ public class RecommendpageFragment extends BaseFragment implements Recommendpage
         View inflate = UIUtils.inflate(R.layout.recommend_fragment);
         rv_recommend_allitem = (RecyclerView) inflate.findViewById(R.id.rv_recommend_allitem);
         if (recommendAdapter == null) {
-            recommendAdapter = new RecommendAdapter(new ArrayList<>(0));
+            recommendAdapter = new RecommendAdapter(new ArrayList<>(0),mPersenter);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             rv_recommend_allitem.setLayoutManager(layoutManager);
             rv_recommend_allitem.setAdapter(recommendAdapter);

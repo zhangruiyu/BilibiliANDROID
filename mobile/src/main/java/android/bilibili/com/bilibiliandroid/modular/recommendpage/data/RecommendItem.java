@@ -67,6 +67,7 @@ public class RecommendItem {
             public int height;
             public String play;
             public String danmaku;
+            public static int index = 0;
         }
     }
 }

@@ -33,11 +33,20 @@
         <item name="actionMenuTextColor">@android:color/white</item>
         <item name="actionMenuTextAppearance">@style/ToolbarMenuTextSize</item>
     </style>
-  <!--  把toolbar离屏幕距离设置为0-->
+    <!--  把toolbar离屏幕距离设置为0-->
     <style name="Widget.Design.AppBarLayout" parent="android:Widget">
         <item name="elevation">0dp</item>
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
     <style name="ToolbarMenuTextSize">14</style>
+
+    <style name="recommend_title_textview">
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:textColor">@color/black_87pc</item>
+    </style>
+
 </resources>
