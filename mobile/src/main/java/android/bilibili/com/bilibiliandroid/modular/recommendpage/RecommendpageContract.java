@@ -11,10 +11,13 @@ import java.util.List;
  */
 public interface RecommendpageContract {
     interface View extends BaseView<Persenter>{
-        void setLoadingIndicator(boolean active);
         void showRecommendItem(List<RecommendItem.ResultEntity> resultEntity);
     }
     interface Persenter extends BasePresenter{
         void onloadRecommendItem();
+
+        void clickRecommend(RecommendItem.ResultEntity.BodyEntity bodyEntity);
+
+        void clickMore(String type);
     }
 }

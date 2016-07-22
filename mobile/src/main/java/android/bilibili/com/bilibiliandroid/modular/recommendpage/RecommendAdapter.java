@@ -10,9 +10,12 @@ import android.databinding.ObservableList;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +24,7 @@ import java.util.List;
  */
 public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.RecommendAdapterHolder> {
 
-    private List<RecommendItem.ResultEntity> datas;
+    private ArrayList<RecommendItem.ResultEntity> datas = new ArrayList<>();
     private RecommendpageContract.Persenter mPersenter;
 
     private RecommendAdapter() {
@@ -29,13 +32,13 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
     }
 
     public RecommendAdapter(List<RecommendItem.ResultEntity> resultEntity, RecommendpageContract.Persenter mPersenter) {
-        setList(resultEntity);
         this.mPersenter = mPersenter;
+        replace(resultEntity);
     }
 
     @Override
     public RecommendAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecommendAdapterHolder recommendAdapterHolder = new RecommendAdapterHolder(UIUtils.inflate(R.layout.recommend_adapteritem),mPersenter);
+        RecommendAdapterHolder recommendAdapterHolder = new RecommendAdapterHolder(UIUtils.inflate(R.layout.recommend_adapteritem), mPersenter);
         return recommendAdapterHolder;
     }
 
@@ -49,12 +52,9 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
         return datas == null ? 0 : datas.size();
     }
 
-    public void replace(List<RecommendItem.ResultEntity> resultEntity) {
-        setList(resultEntity);
-    }
-
-    private void setList(List<RecommendItem.ResultEntity> datas) {
-        this.datas = datas;
+    public void replace(List<RecommendItem.ResultEntity> sources) {
+        this.datas.clear();
+        this.datas.addAll(sources);
         notifyDataSetChanged();
     }
 
@@ -62,6 +62,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
 
         private final RecommendAdapteritemBinding recommendAdapteritemBinding;
         private RecommendpageContract.Persenter mPersenter;
+
         public RecommendAdapterHolder(View itemView, RecommendpageContract.Persenter mPersenter) {
             super(itemView);
             this.mPersenter = mPersenter;
@@ -75,24 +76,39 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
             if ("recommend".equals(resultEntity.type)) {
                 bodyEntities.addAll(resultEntity.body);
                 recommendAdapteritemBinding.setRecommenditem(bodyEntities);
-                RecommendItem.ResultEntity.BodyEntity bodyEntity = resultEntity.body.get(0);
-                LogUtils.d(itemView.getContext()+"hha");
                 //宽度是高度的几倍
-               // int percent = bodyEntity.width / bodyEntity.height;
-                Glide.with(itemView.getContext())
-                        .load(bodyEntity.cover)
-                        .into(recommendAdapteritemBinding.ivRecommendContentOne);
-                Glide.with(itemView.getContext())
-                        .load(resultEntity.body.get(1).cover)
-                        .into(recommendAdapteritemBinding.ivRecommendContentTwo);
-                Glide.with(itemView.getContext())
-                        .load(resultEntity.body.get(2).cover)
-                        .into(recommendAdapteritemBinding.ivRecommendContentThree);
-                Glide.with(itemView.getContext())
-                        .load(resultEntity.body.get(3).cover)
-                        .into(recommendAdapteritemBinding.ivRecommendContentFour);
+                // int percent = bodyEntity.width / bodyEntity.height;
+                ImageView[] imageViews = {recommendAdapteritemBinding.ivRecommendContentOne, recommendAdapteritemBinding.ivRecommendContentTwo
+                        , recommendAdapteritemBinding.ivRecommendContentThree
+                        , recommendAdapteritemBinding.ivRecommendContentFour};
+                for (int i = 0; i < resultEntity.body.size(); i++) {
+                    RecommendItem.ResultEntity.BodyEntity bodyEntity = resultEntity.body.get(i);
+                    Glide.with(itemView.getContext())
+                            .load(bodyEntity.cover)/*.placeholder(R.drawable.bili_default_image_tv)*/
+                            .into(imageViews[i]);
+                }
+                RecommendItemActionHandler itemActionHandler =
+                        new RecommendItemActionHandler();
+                recommendAdapteritemBinding.setType(resultEntity.type);
+                recommendAdapteritemBinding.setRecommenditem(bodyEntities);
+                recommendAdapteritemBinding.setActionHandler(itemActionHandler);
+                recommendAdapteritemBinding.executePendingBindings();
             }
 
+        }
+
+
+    }
+
+    public class RecommendItemActionHandler {
+        /* public RecommendItemActionHandler(RecommendpageContract.Persenter mPersenter) {
+         }*/
+        public void clickRecommend(RecommendItem.ResultEntity.BodyEntity bodyEntity) {
+            mPersenter.clickRecommend(bodyEntity);
+        }
+
+        public void clickMore(String type) {
+            mPersenter.clickMore(type);
         }
     }
 }

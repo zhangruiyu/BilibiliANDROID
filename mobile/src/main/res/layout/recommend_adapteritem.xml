@@ -12,12 +12,19 @@
         <variable
             name="recommenditem"
             type="ObservableList&lt;BodyEntity>" />
+        <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="actionHandler"
+            type="android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendAdapter.RecommendItemActionHandler" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:onClick="@{() -> actionHandler.clickMore(type)}"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -25,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:background="@drawable/recycleview_touchbg"
+            android:background="@drawable/nobg_touchbg"
             android:paddingLeft="15dp">
 
             <ImageView
@@ -49,13 +56,15 @@
         <android.support.percent.PercentRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_below="@+id/iv_recommend_head"
             android:layout_marginTop="15dp">
 
-            <LinearLayout
+            <android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout
                 android:id="@+id/ll_recommend_content_one"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> actionHandler.clickRecommend(recommenditem[0])}"
                 android:orientation="vertical"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="2.5%"
@@ -74,12 +83,13 @@
                     android:text="@{recommenditem[0].title}"
                     android:textColor="@color/black_87pc"
                     tools:text="1fdasfasdgds11" />
-            </LinearLayout>
+            </android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout>
 
-            <LinearLayout
+            <android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/ll_recommend_content_one"
+                android:onClick="@{() -> actionHandler.clickRecommend(recommenditem[1])}"
                 android:orientation="vertical"
                 app:layout_marginLeftPercent="2.5%"
                 app:layout_marginRightPercent="5%"
@@ -98,14 +108,15 @@
                     android:text="@{recommenditem[1].title}"
                     android:textColor="@color/black_87pc"
                     tools:text="1fdasfasdgds11" />
-            </LinearLayout>
+            </android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout>
 
-            <LinearLayout
+            <android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout
                 android:id="@+id/ll_recommend_content_three"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_recommend_content_one"
                 android:layout_marginTop="20dp"
+                android:onClick="@{() -> actionHandler.clickRecommend(recommenditem[2])}"
                 android:orientation="vertical"
                 app:layout_marginLeftPercent="5%"
                 app:layout_marginRightPercent="2.5%"
@@ -125,14 +136,15 @@
                     android:text="@{recommenditem[2].title}"
                     android:textColor="@color/black_87pc"
                     tools:text="1fdasfasdgds11" />
-            </LinearLayout>
+            </android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout>
 
-            <LinearLayout
+            <android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_recommend_content_one"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/ll_recommend_content_three"
+                android:onClick="@{() -> actionHandler.clickRecommend(recommenditem[3])}"
                 android:orientation="vertical"
                 app:layout_marginLeftPercent="2.5%"
                 app:layout_marginRightPercent="5%"
@@ -151,7 +163,7 @@
                     android:text="@{recommenditem[3].title}"
                     android:textColor="@color/black_87pc"
                     tools:text="1fdasfasdgds11" />
-            </LinearLayout>
+            </android.bilibili.com.bilibiliandroid.ui.CustomLiearLayout>
         </android.support.percent.PercentRelativeLayout>
 
 

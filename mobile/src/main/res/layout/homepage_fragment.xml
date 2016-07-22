@@ -6,10 +6,11 @@
 
         <variable
             name="homepageModel"
-            type="android.bilibili.com.bilibiliandroid.modular.homepage.HomepageModel" />
+            type="android.bilibili.com.bilibiliandroid.modular.homepage.data.HomepageModel" />
+
         <variable
             name="homepagePersenter"
-            type="android.bilibili.com.bilibiliandroid.modular.homepage.HomepageContract.Persenter"/>
+            type="android.bilibili.com.bilibiliandroid.modular.homepage.HomepageContract.Persenter" />
     </data>
 
     <LinearLayout
@@ -24,22 +25,23 @@
             android:background="?attr/colorPrimary"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/white_text"
+            app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white_text"
-            app:tabTextColor="@color/control_normal_blue"
-            app:tabMode="fixed">
+            app:tabTextColor="@color/control_normal_blue">
 
         </android.support.design.widget.TabLayout>
 
         <android.bilibili.com.bilibiliandroid.ui.CustomSwipeToRefresh
             android:id="@+id/swp_homepage_refresh"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:onRefresh="@{homepagePersenter}"
-            android:layout_height="match_parent">
+            app:refreshing="@{homepageModel.isrefresh}">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vp_homepage_allpage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
         </android.bilibili.com.bilibiliandroid.ui.CustomSwipeToRefresh>
     </LinearLayout>
 

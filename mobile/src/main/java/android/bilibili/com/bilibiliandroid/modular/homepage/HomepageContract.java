@@ -9,6 +9,8 @@ import android.bilibili.com.bilibiliandroid.base.BaseView;
 public interface HomepageContract {
     interface View extends BaseView<Persenter>{
         void setLoadingIndicator(boolean active);
+
+        void onloadViewpagerData();
     }
     interface Persenter extends BasePresenter{
         void onloadData(boolean active);

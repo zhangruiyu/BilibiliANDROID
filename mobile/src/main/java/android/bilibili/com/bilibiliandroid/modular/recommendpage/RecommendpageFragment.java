@@ -2,6 +2,9 @@ package android.bilibili.com.bilibiliandroid.modular.recommendpage;
 
 import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.base.BaseFragment;
+import android.bilibili.com.bilibiliandroid.base.BaseHomepageFragment;
+import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageContract;
+import android.bilibili.com.bilibiliandroid.modular.homepage.data.HomepageModel;
 import android.bilibili.com.bilibiliandroid.modular.recommendpage.data.RecommendItem;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
 import android.os.Bundle;
@@ -26,11 +29,12 @@ import static android.bilibili.com.bilibiliandroid.utils.Precondition.checkNotNu
 /**
  * Created by ZRY on 2016/7/20.
  */
-public class RecommendpageFragment extends BaseFragment implements RecommendpageContract.View {
+public class RecommendpageFragment extends BaseHomepageFragment implements RecommendpageContract.View {
 
     private RecommendpageContract.Persenter mPersenter;
     private RecyclerView rv_recommend_allitem;
     private RecommendAdapter recommendAdapter;
+
 
     @Nullable
     @Override
@@ -38,7 +42,7 @@ public class RecommendpageFragment extends BaseFragment implements Recommendpage
         View inflate = UIUtils.inflate(R.layout.recommend_fragment);
         rv_recommend_allitem = (RecyclerView) inflate.findViewById(R.id.rv_recommend_allitem);
         if (recommendAdapter == null) {
-            recommendAdapter = new RecommendAdapter(new ArrayList<>(0),mPersenter);
+            recommendAdapter = new RecommendAdapter(new ArrayList<>(0), mPersenter);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             rv_recommend_allitem.setLayoutManager(layoutManager);
             rv_recommend_allitem.setAdapter(recommendAdapter);
@@ -57,17 +61,23 @@ public class RecommendpageFragment extends BaseFragment implements Recommendpage
     @Override
     public void onResume() {
         super.onResume();
-        if(mPersenter != null){
+        if (mPersenter != null) {
             mPersenter.start();
         }
     }
 
     @Override
-    public void setLoadingIndicator(boolean active) {
+    public void onloadData() {
+        super.onloadData();
+        if(mPersenter!=null){
+            mPersenter.onloadRecommendItem();
+        }
     }
+
 
     @Override
     public void showRecommendItem(List<RecommendItem.ResultEntity> resultEntity) {
         recommendAdapter.replace(resultEntity);
     }
+
 }

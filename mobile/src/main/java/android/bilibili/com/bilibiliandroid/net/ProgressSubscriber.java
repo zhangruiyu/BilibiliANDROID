@@ -55,6 +55,7 @@ public abstract class ProgressSubscriber<T> extends Subscriber<T> {
             LogUtils.e(e);
         }else{
             LogUtils.e(e);
+            throw new RuntimeException(e);
         }
         dismissProgressDialog();
     }

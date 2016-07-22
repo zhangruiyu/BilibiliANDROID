@@ -22,5 +22,8 @@ public class HomepagePresenter implements HomepageContract.Persenter {
     @Override
     public void onloadData(boolean active) {
         mHomepageFragment.setLoadingIndicator(active);
+        mHomepageFragment.onloadViewpagerData();
     }
+
+
 }

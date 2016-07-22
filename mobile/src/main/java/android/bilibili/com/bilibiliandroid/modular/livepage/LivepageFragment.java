@@ -2,6 +2,7 @@ package android.bilibili.com.bilibiliandroid.modular.livepage;
 
 import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.base.BaseFragment;
+import android.bilibili.com.bilibiliandroid.base.BaseHomepageFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 /**
  * Created by ZRY on 2016/7/20.
  */
-public class LivepageFragment extends BaseFragment implements LivepageContract.View{
+public class LivepageFragment extends BaseHomepageFragment implements LivepageContract.View{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

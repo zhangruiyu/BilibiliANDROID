@@ -2,21 +2,20 @@ package android.bilibili.com.bilibiliandroid.modular.homepage;
 
 import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.base.BaseFragment;
+import android.bilibili.com.bilibiliandroid.base.BaseHomepageFragment;
 import android.bilibili.com.bilibiliandroid.databinding.HomepageFragmentBinding;
 import android.bilibili.com.bilibiliandroid.modular.attention.AttentionpageFragment;
 import android.bilibili.com.bilibiliandroid.modular.discover.DiscoverpageFragment;
+import android.bilibili.com.bilibiliandroid.modular.homepage.data.HomepageModel;
 import android.bilibili.com.bilibiliandroid.modular.livepage.LivepageFragment;
 import android.bilibili.com.bilibiliandroid.modular.newdramapage.NewdramapageFragment;
 import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpageFragment;
 import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpagePresenter;
 import android.bilibili.com.bilibiliandroid.modular.subarea.SubareapageFragment;
-import android.bilibili.com.bilibiliandroid.utils.UIUtils;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -28,9 +27,11 @@ import android.view.ViewGroup;
  */
 public class HomepageFragment extends BaseFragment implements HomepageContract.View {
     private HomepageContract.Persenter mPersenter;
+    HomepageModel homepageModel = new HomepageModel();
     private AllpageAdapter allpageAdapter;
     private String[] stringArray;
     Class[] allpageClasses = {LivepageFragment.class, RecommendpageFragment.class, NewdramapageFragment.class, SubareapageFragment.class, AttentionpageFragment.class, DiscoverpageFragment.class};
+    private HomepageFragmentBinding homepageFragmentBinding;
 
     public static HomepageFragment newInstance() {
         return new HomepageFragment();
@@ -39,9 +40,8 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        HomepageFragmentBinding homepageFragmentBinding = HomepageFragmentBinding.inflate(inflater, container, false);
+        homepageFragmentBinding = HomepageFragmentBinding.inflate(inflater, container, false);
         stringArray = getResources().getStringArray(R.array.homepage_allbutton);
-        homepageFragmentBinding.setHomepageModel(new HomepageModel());
 
         if (allpageAdapter == null) {
             allpageAdapter = new AllpageAdapter(getFragmentManager());
@@ -50,7 +50,8 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
             allpageAdapter.notifyDataSetChanged();
         }
         homepageFragmentBinding.tlHomepageAllbutton.setupWithViewPager(homepageFragmentBinding.vpHomepageAllpage);
-        homepageFragmentBinding.setHomepageModel(new HomepageModel());
+        homepageFragmentBinding.setHomepageModel(homepageModel);
+        homepageFragmentBinding.setHomepagePersenter(mPersenter);
 
         homepageFragmentBinding.vpHomepageAllpage.setCurrentItem(1);
         return homepageFragmentBinding.getRoot();
@@ -63,15 +64,17 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
 
     @Override
     public void setLoadingIndicator(boolean active) {
-        if (getView() == null) {
-            return;
-        }
-        final SwipeRefreshLayout srl =
-                (SwipeRefreshLayout) getView().findViewById(R.id.swp_homepage_refresh);
-
-        srl.post(() -> srl.setRefreshing(active));
+        homepageModel.setIsrefresh(true);
     }
 
+    @Override
+    public void onloadViewpagerData() {
+        if(homepageFragmentBinding.vpHomepageAllpage.getCurrentItem() == 1){
+            allpageAdapter.getItem(1).onloadData();
+        }
+    }
+    RecommendpageFragment recommendpageFragment = new RecommendpageFragment();
+    RecommendpagePresenter recommendpagePresenter =   new RecommendpagePresenter(recommendpageFragment,homepageModel);
     class AllpageAdapter extends FragmentStatePagerAdapter {
 
         public AllpageAdapter(FragmentManager fm) {
@@ -79,10 +82,8 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public BaseHomepageFragment getItem(int position) {
             if (position == 1) {
-                RecommendpageFragment recommendpageFragment = new RecommendpageFragment();
-                new RecommendpagePresenter(recommendpageFragment);
                 return recommendpageFragment;
             } else return new LivepageFragment();
         }
