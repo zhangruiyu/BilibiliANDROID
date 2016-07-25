@@ -23,7 +23,7 @@ public class BaseActivity extends RxAppCompatActivity {
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-        getDelegate().setContentView(layoutResID);
+        super.setContentView(layoutResID);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }

@@ -3,7 +3,7 @@ package android.bilibili.com.bilibiliandroid.base;
 /**
  * Created by zhangruiyu on 16/5/19.
  */
-public class HttpResult<T> {
+public class BilibiliResult<T> {
 
     public int code;
  //   public String ret_msg;

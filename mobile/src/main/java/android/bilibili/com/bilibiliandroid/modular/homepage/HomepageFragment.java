@@ -6,8 +6,10 @@ import android.bilibili.com.bilibiliandroid.base.BaseHomepageFragment;
 import android.bilibili.com.bilibiliandroid.databinding.HomepageFragmentBinding;
 import android.bilibili.com.bilibiliandroid.modular.attention.AttentionpageFragment;
 import android.bilibili.com.bilibiliandroid.modular.discover.DiscoverpageFragment;
+import android.bilibili.com.bilibiliandroid.modular.favourite.FavoriteFragment;
 import android.bilibili.com.bilibiliandroid.modular.homepage.data.HomepageModel;
 import android.bilibili.com.bilibiliandroid.modular.livepage.LivepageFragment;
+import android.bilibili.com.bilibiliandroid.modular.livepage.LivepagePresenter;
 import android.bilibili.com.bilibiliandroid.modular.newdramapage.NewdramapageFragment;
 import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpageFragment;
 import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpagePresenter;
@@ -67,12 +69,17 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
 
     @Override
     public void onloadViewpagerData() {
-        if(homepageFragmentBinding.vpHomepageAllpage.getCurrentItem() == 1){
+        if (homepageFragmentBinding.vpHomepageAllpage.getCurrentItem() == 1) {
             allpageAdapter.getItem(1).onloadData();
         }
     }
+
     RecommendpageFragment recommendpageFragment = new RecommendpageFragment();
-    RecommendpagePresenter recommendpagePresenter =   new RecommendpagePresenter(recommendpageFragment,homepageModel);
+    RecommendpagePresenter recommendpagePresenter = new RecommendpagePresenter(recommendpageFragment, homepageModel);
+
+    LivepageFragment livepageFragment = new LivepageFragment();
+    LivepagePresenter livepagePresenter = new LivepagePresenter(livepageFragment, homepageModel);
+
     class AllpageAdapter extends FragmentStatePagerAdapter {
 
         public AllpageAdapter(FragmentManager fm) {
@@ -81,9 +88,12 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
 
         @Override
         public BaseHomepageFragment getItem(int position) {
+            if (position == 0) {
+                return livepageFragment;
+            }
             if (position == 1) {
                 return recommendpageFragment;
-            } else return new LivepageFragment();
+            } else return new FavoriteFragment();
         }
 
         //必须要重写这句,tablayout和viewpage关联时会删除之前的tabitem,重新调用这个方法 弄新标题
