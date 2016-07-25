@@ -1,22 +1,12 @@
 package android.bilibili.com.bilibiliandroid.modular.livepage;
 
 import android.bilibili.com.bilibiliandroid.R;
-import android.bilibili.com.bilibiliandroid.databinding.RecommendAdapteritemBinding;
 import android.bilibili.com.bilibiliandroid.modular.livepage.data.LiveIndex;
-import android.bilibili.com.bilibiliandroid.modular.recommendpage.RecommendpageContract;
-import android.bilibili.com.bilibiliandroid.modular.recommendpage.data.RecommendItem;
 import android.bilibili.com.bilibiliandroid.ui.BilibiliBannerViewpager;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
-import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,10 +79,10 @@ public class LivepageAdapter extends RecyclerView.Adapter<LivepageAdapter.Livepa
             //   recommendAdapteritemBinding = RecommendAdapteritemBinding.bind(itemView);
         }
 
-
         public void refreshView(ArrayList<LiveIndex.DataEntity.BannerEntity> resultEntity) {
-            liveBannerAdapter.notifyDataSetChanged();
+            bilibili_livepage_banner.relaceBanner(resultEntity);
         }
+
     }
 
 

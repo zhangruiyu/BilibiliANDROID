@@ -15,10 +15,11 @@ import java.util.ArrayList;
  * Created by ZRY on 2016/7/25.
  */
 public class LiveBannerAdapter extends PagerAdapter {
-    ArrayList<LiveIndex.DataEntity.BannerEntity> resultEntity;
+    ArrayList<LiveIndex.DataEntity.BannerEntity> resultEntity = new ArrayList<>();
 
     public LiveBannerAdapter(ArrayList<LiveIndex.DataEntity.BannerEntity> resultEntity) {
-        this.resultEntity = resultEntity;
+        resultEntity.clear();
+        resultEntity.addAll(resultEntity);
     }
 
     // 指的当前数量
@@ -26,6 +27,10 @@ public class LiveBannerAdapter extends PagerAdapter {
     public int getCount() {
         //只有一页不需要辣妈多
         return resultEntity.size() <= 1 ? resultEntity.size() : Integer.MAX_VALUE;
+    }
+
+    public int getDataCount() {
+        return resultEntity.size();
     }
 
     @Override
@@ -46,5 +51,11 @@ public class LiveBannerAdapter extends PagerAdapter {
         //  imageView.setOnTouchListener(onTouchListener);
         container.addView(imageView);
         return imageView;
+    }
+
+    public void relaceData(ArrayList<LiveIndex.DataEntity.BannerEntity> source) {
+        resultEntity.clear();
+        resultEntity.addAll(source);
+        notifyDataSetChanged();
     }
 }
