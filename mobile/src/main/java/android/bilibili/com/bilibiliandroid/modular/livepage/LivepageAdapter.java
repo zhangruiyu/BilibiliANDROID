@@ -3,6 +3,7 @@ package android.bilibili.com.bilibiliandroid.modular.livepage;
 import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.modular.livepage.data.LiveIndex;
 import android.bilibili.com.bilibiliandroid.ui.BilibiliBannerViewpager;
+import android.bilibili.com.bilibiliandroid.utils.LogUtils;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

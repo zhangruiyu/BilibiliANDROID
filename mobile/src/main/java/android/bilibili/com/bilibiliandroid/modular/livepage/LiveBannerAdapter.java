@@ -1,6 +1,8 @@
 package android.bilibili.com.bilibiliandroid.modular.livepage;
 
+import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.modular.livepage.data.LiveIndex;
+import android.bilibili.com.bilibiliandroid.utils.LogUtils;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -47,6 +49,7 @@ public class LiveBannerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         final int index = position % resultEntity.size();
         ImageView imageView = new ImageView(UIUtils.getContext());
+        imageView.setBackgroundResource(R.drawable.nobg_touchbg);
         Glide.with(UIUtils.getContext()).load(resultEntity.get(index).img).centerCrop().crossFade().into(imageView);
         //  imageView.setOnTouchListener(onTouchListener);
         container.addView(imageView);
@@ -56,6 +59,7 @@ public class LiveBannerAdapter extends PagerAdapter {
     public void relaceData(ArrayList<LiveIndex.DataEntity.BannerEntity> source) {
         resultEntity.clear();
         resultEntity.addAll(source);
+        LogUtils.d(source.size() + "多添加一个" + resultEntity.size());
         notifyDataSetChanged();
     }
 }

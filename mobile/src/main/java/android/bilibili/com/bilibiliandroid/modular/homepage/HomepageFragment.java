@@ -44,7 +44,7 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
         stringArray = getResources().getStringArray(R.array.homepage_allbutton);
 
         if (allpageAdapter == null) {
-            allpageAdapter = new AllpageAdapter(getFragmentManager());
+            allpageAdapter = new AllpageAdapter(getChildFragmentManager());
             homepageFragmentBinding.vpHomepageAllpage.setAdapter(allpageAdapter);
         } else {
             allpageAdapter.notifyDataSetChanged();
@@ -52,7 +52,7 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
         homepageFragmentBinding.tlHomepageAllbutton.setupWithViewPager(homepageFragmentBinding.vpHomepageAllpage);
         homepageFragmentBinding.setHomepageModel(homepageModel);
         homepageFragmentBinding.setHomepagePersenter(mPersenter);
-
+    //    homepageFragmentBinding.vpHomepageAllpage.setOffscreenPageLimit(stringArray.length);
         homepageFragmentBinding.vpHomepageAllpage.setCurrentItem(1);
         return homepageFragmentBinding.getRoot();
     }
@@ -101,7 +101,6 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
         public CharSequence getPageTitle(int position) {
             return stringArray[position];
         }
-
         @Override
         public int getCount() {
             return stringArray.length;

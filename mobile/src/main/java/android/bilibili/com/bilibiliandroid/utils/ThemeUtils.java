@@ -2,6 +2,7 @@ package android.bilibili.com.bilibiliandroid.utils;
 
 import android.bilibili.com.bilibiliandroid.R;
 import android.content.Context;
+import android.content.res.Resources;
 
 /**
  * Created by ZRY on 2016/7/19.
