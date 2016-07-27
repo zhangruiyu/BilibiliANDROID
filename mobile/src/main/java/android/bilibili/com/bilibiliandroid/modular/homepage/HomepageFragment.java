@@ -70,7 +70,7 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
     @Override
     public void onloadViewpagerData() {
         if (homepageFragmentBinding.vpHomepageAllpage.getCurrentItem() <= 1) {
-            allpageAdapter.getItem(1).onloadData();
+            allpageAdapter.getItem(homepageFragmentBinding.vpHomepageAllpage.getCurrentItem()).onloadData();
         }
     }
 
