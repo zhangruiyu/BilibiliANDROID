@@ -39,6 +39,12 @@ public class LivepageFragment extends BaseHomepageFragment implements LivepageCo
     }
 
     @Override
+    public void onloadData() {
+        super.onloadData();
+        mPersenter.onloadLiveItem();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         if (mPersenter != null) {

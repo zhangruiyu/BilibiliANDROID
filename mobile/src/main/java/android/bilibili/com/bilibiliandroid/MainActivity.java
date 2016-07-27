@@ -26,7 +26,6 @@ import android.view.MenuItem;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private int theme = 0;
-    private static MainActivity mainActivity;
 
 
 
@@ -43,7 +42,6 @@ public class MainActivity extends BaseActivity
         setTheme(theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainActivity = this;
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         toolbar.setLogo(new CircleImageDrawable(BitmapUtils.small(bitmap)));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -122,13 +120,4 @@ public class MainActivity extends BaseActivity
         return true;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mainActivity = null;
-    }
-
-    public static MainActivity getMainActivity() {
-        return mainActivity;
-    }
 }

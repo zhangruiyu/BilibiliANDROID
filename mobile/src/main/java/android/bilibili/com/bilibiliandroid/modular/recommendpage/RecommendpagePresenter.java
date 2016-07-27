@@ -32,7 +32,9 @@ public class RecommendpagePresenter implements RecommendpageContract.Persenter {
 
     @Override
     public void onloadRecommendItem() {
-        new RecommendRepository().getRecommendItem().subscribe(new ProgressSubscriber<List<RecommendItem.ResultEntity>>() {
+        new RecommendRepository().getRecommendItem().doAfterTerminate(() ->
+                mHomepageModel.setIsrefresh(false)
+        ).subscribe(new ProgressSubscriber<List<RecommendItem.ResultEntity>>() {
             @Override
             public void onNext(List<RecommendItem.ResultEntity> resultEntity) {
                 LogUtils.d(resultEntity.size());

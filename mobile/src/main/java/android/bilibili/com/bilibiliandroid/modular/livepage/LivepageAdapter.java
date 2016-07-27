@@ -60,6 +60,7 @@ public class LivepageAdapter extends RecyclerView.Adapter<LivepageAdapter.Livepa
         banner.clear();
         partitions.clear();
         entranceIcons.clear();
+        //再加一个数据不够
         banner.addAll(sources.banner);
         banner.addAll(sources.banner);
         partitions.addAll(sources.partitions);

@@ -24,8 +24,9 @@ public class LivepagePresenter implements LivepageContract.Persenter {
 
     @Override
     public void onloadLiveItem() {
-        Network.getInstance().getLiveIndexList().subscribe(liveData -> {
-            mHomepageModel.setIsrefresh(false);
+        Network.getInstance().getLiveIndexList().doAfterTerminate(() ->
+                mHomepageModel.setIsrefresh(false)
+        ).subscribe(liveData -> {
             LogUtils.d(liveData.banner.size() + "轮播图size");
             mLlivepageFragment.showLiveItem(liveData);
         });

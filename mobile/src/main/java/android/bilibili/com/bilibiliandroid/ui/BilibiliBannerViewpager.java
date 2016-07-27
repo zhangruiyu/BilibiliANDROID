@@ -1,19 +1,13 @@
 package android.bilibili.com.bilibiliandroid.ui;
 
-import android.bilibili.com.bilibiliandroid.MainActivity;
 import android.bilibili.com.bilibiliandroid.R;
 import android.bilibili.com.bilibiliandroid.modular.livepage.LiveBannerAdapter;
 import android.bilibili.com.bilibiliandroid.modular.livepage.data.LiveIndex;
 import android.bilibili.com.bilibiliandroid.utils.DrawableUtils;
-import android.bilibili.com.bilibiliandroid.utils.LogUtils;
 import android.bilibili.com.bilibiliandroid.utils.UIUtils;
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -28,12 +22,9 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
-import rx.Scheduler;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.functions.Func0;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by ZRY on 2016/7/25.
@@ -43,7 +34,7 @@ public class BilibiliBannerViewpager extends RelativeLayout {
     private ViewPager viewPager;
     private LinearLayout linearLayout;
     private LiveBannerAdapter mAdapter;
-    private AutoRunningTask autoRunningTask = new AutoRunningTask();
+    private AutoRunningTask autoRunning = new AutoRunningTask();
 
     public BilibiliBannerViewpager(Context context) {
         this(context, null);
@@ -93,7 +84,7 @@ public class BilibiliBannerViewpager extends RelativeLayout {
             linearLayout.addView(point);
             point.setEnabled(i == 0);
         }
-        autoRunningTask.start();
+        autoRunning.start();
     }
 
     private GradientDrawable createPointPressed(int backgroundColor) {
@@ -169,15 +160,14 @@ public class BilibiliBannerViewpager extends RelativeLayout {
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    if (autoRunningTask != null) {
-                        autoRunningTask.stop();
+                    if (autoRunning != null) {
+                        autoRunning.stop();
                     }
                     break;
                 case MotionEvent.ACTION_CANCEL:  //取消的事件
                 case MotionEvent.ACTION_UP:
-                    int i = 0;
-                    if (autoRunningTask != null) {
-                        autoRunningTask.start();
+                    if (autoRunning != null) {
+                        autoRunning.start();
                     }
             }
             return false;

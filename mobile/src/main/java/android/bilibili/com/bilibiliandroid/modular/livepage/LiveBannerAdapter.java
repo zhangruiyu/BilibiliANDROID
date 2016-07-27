@@ -59,7 +59,6 @@ public class LiveBannerAdapter extends PagerAdapter {
     public void relaceData(ArrayList<LiveIndex.DataEntity.BannerEntity> source) {
         resultEntity.clear();
         resultEntity.addAll(source);
-        LogUtils.d(source.size() + "多添加一个" + resultEntity.size());
         notifyDataSetChanged();
     }
 }
