@@ -3,7 +3,12 @@
     <color name="colorPrimary">#f97197</color>
     <color name="colorPrimaryDark">#f97197</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="themeTextColor_NormalColor">@color/black_text</color>
+    <color name="themeTextColor_NightColor">@color/color_eaeaea</color>
+    <color name="themeBgColor_NormalColor">@color/white_text</color>
+    <color name="themeBgColor_NightColor">#363636</color>
+    <color name="themeBanner_NormalColor">#f97197</color>
+    <color name="themeBanner_NightColor">#b35e75</color>
 
     <!-- 作用于次要的文字提示 -->
     <color name="white_text">#ffffff</color>

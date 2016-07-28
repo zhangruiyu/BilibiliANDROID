@@ -212,8 +212,8 @@ public class LiveIndex {
 
             public static class EntranceIconEntity {
                 public String src;
-                public String height;
-                public String width;
+                public int height;
+                public int width;
             }
         }
 

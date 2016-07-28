@@ -83,7 +83,8 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.Reco
                 for (int i = 0; i < resultEntity.body.size(); i++) {
                     RecommendItem.ResultEntity.BodyEntity bodyEntity = resultEntity.body.get(i);
                     Glide.with(itemView.getContext())
-                            .load(bodyEntity.cover)/*.placeholder(R.drawable.bili_default_image_tv)*/
+                            .load(bodyEntity.cover)
+                    /*.placeholder(R.drawable.bili_default_image_tv)*/
                             .into(imageViews[i]);
                 }
                 RecommendItemActionHandler itemActionHandler =
