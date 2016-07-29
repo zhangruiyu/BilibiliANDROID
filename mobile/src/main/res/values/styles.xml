@@ -1,19 +1,20 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="BilibiliBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BilibiliBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme" parent="BilibiliBaseTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="bannerSelectColor">@color/themeBanner_NormalColor</item>
         <item name="themeTextColor">@color/themeTextColor_NormalColor</item>
         <item name="themeBgColor">@color/themeBgColor_NormalColor</item>
 
+        <!--控件默认颜色-->
+        <item name="colorAccent">@color/themeBgColor_NormalColor</item>
+        <!--    actionbar颜色-->
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="actionMenuTextAppearance">@style/ToolbarMenuTextSize</item>
         <item name="android:windowBackground">@color/color_eaeaea</item>
     </style>
@@ -26,13 +27,12 @@
         <item name="bannerSelectColor">@color/themeBanner_NightColor</item>
         <item name="themeBgColor">@color/themeBgColor_NightColor</item>
 
-        <item name="colorPrimaryDark">@color/status_grey</item>
-        <item name="android:statusBarColor">@color/status_grey</item>
-        <item name="colorPrimary">@color/action_grey</item>
-        <item name="android:windowBackground">@color/window_bg_grey</item>
-        <item name="android:colorForeground">@color/fg_grey</item>
-        <item name="android:colorBackground">@color/bg_grey</item>
-        <item name="colorAccent">@color/control_activated_grey</item>
+        <!--控件默认颜色-->
+        <item name="colorAccent">@color/themeBgColor_NightColor</item>
+        <!--    actionbar颜色-->
+        <item name="colorPrimary">@color/dark_colorPrimary</item>
+
+        <item name="android:windowBackground">@color/themeWindowBackground_NightColor</item>
         <item name="android:textColor">@color/white_text</item>
         <item name="android:textColorPrimaryDisableOnly">@color/white_text</item>
         <item name="android:textColorPrimary">@color/white_text</item>

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--普通主题和夜间主题 actionbar颜色-->
     <color name="colorPrimary">#f97197</color>
-    <color name="colorPrimaryDark">#f97197</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="dark_colorPrimary">#3a3a3a</color>
+    <!--普通主题和夜间主题 文字颜色-->
     <color name="themeTextColor_NormalColor">@color/black_text</color>
     <color name="themeTextColor_NightColor">@color/color_eaeaea</color>
+    <!--普通主题和夜间主题 控件默认背景颜色 -->
     <color name="themeBgColor_NormalColor">@color/white_text</color>
-    <color name="themeBgColor_NightColor">#363636</color>
+    <color name="themeBgColor_NightColor">#3a3a3a</color>
+    <!--普通主题和夜间主题 轮播图默认背景颜色 -->
     <color name="themeBanner_NormalColor">#f97197</color>
     <color name="themeBanner_NightColor">#b35e75</color>
+    <!--普通主题和夜间主题 屏幕最底层默认背景颜色 -->
+    <color name="themeWindowBackground_NightColor">#2c2c2c</color>
 
+    <color name="transparent">#00000000</color>
     <!-- 作用于次要的文字提示 -->
     <color name="white_text">#ffffff</color>
 

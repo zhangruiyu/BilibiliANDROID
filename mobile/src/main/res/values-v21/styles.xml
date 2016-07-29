@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme.NoActionBar">
+  <!--  <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
@@ -9,24 +9,6 @@
 
         <item name="bannerSelectColor">@color/colorPrimary</item>
         <item name="themeTextColor">@color/themeTextColor_NormalColor</item>
-    </style>
+    </style>-->
 
-    <style name="AppTheme.Black" parent="Theme.AppCompat">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="themeTextColor">@color/themeTextColor_NightColor</item>
-        <item name="bannerSelectColor">@color/themeBanner_NightColor</item>
-        <item name="themeBgColor">@color/themeBgColor_NightColor</item>
-
-        <item name="colorPrimaryDark">@color/themeBgColor_NightColor</item>
-        <item name="android:statusBarColor">@color/themeBgColor_NightColor</item>
-        <item name="colorPrimary">@color/themeBgColor_NightColor</item>
-        <item name="android:windowBackground">@color/window_bg_grey</item>
-        <item name="android:colorForeground">@color/fg_grey</item>
-        <item name="android:colorBackground">@color/bg_grey</item>
-        <item name="colorAccent">@color/control_activated_grey</item>
-        <item name="android:textColor">@color/white_text</item>
-        <item name="android:textColorPrimaryDisableOnly">@color/white_text</item>
-        <item name="android:textColorPrimary">@color/white_text</item>
-    </style>
 </resources>
