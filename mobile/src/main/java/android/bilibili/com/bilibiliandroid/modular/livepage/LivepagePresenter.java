@@ -9,9 +9,9 @@ import android.bilibili.com.bilibiliandroid.utils.LogUtils;
  */
 public class LivepagePresenter implements LivepageContract.Persenter {
     HomepageModel mHomepageModel;
-    LivepageFragment mLlivepageFragment;
+    LivepageContract.View mLlivepageFragment;
 
-    public LivepagePresenter(LivepageFragment livepageFragment, HomepageModel homepageModel) {
+    public LivepagePresenter(LivepageContract.View livepageFragment, HomepageModel homepageModel) {
         mLlivepageFragment = livepageFragment;
         livepageFragment.setPresenter(this);
         mHomepageModel = homepageModel;

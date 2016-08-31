@@ -16,10 +16,10 @@ import static android.bilibili.com.bilibiliandroid.utils.Precondition.checkNotNu
  */
 public class RecommendpagePresenter implements RecommendpageContract.Persenter {
 
-    private final RecommendpageFragment mRecommendpageFragment;
+    private final RecommendpageContract.View mRecommendpageFragment;
     private final HomepageModel mHomepageModel;
 
-    public RecommendpagePresenter(RecommendpageFragment recommendpageFragment, HomepageModel homepageModel) {
+    public RecommendpagePresenter(RecommendpageContract.View recommendpageFragment, HomepageModel homepageModel) {
         mRecommendpageFragment = checkNotNull(recommendpageFragment);
         mHomepageModel = checkNotNull(homepageModel);
         recommendpageFragment.setPresenter(this);

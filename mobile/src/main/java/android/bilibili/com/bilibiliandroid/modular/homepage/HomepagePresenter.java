@@ -7,9 +7,9 @@ import static android.bilibili.com.bilibiliandroid.utils.Precondition.checkNotNu
  */
 public class HomepagePresenter implements HomepageContract.Persenter {
 
-    private final HomepageFragment mHomepageFragment;
+    private final HomepageContract.View mHomepageFragment;
 
-    public HomepagePresenter(HomepageFragment homepageFragment) {
+    public HomepagePresenter(HomepageContract.View homepageFragment) {
         mHomepageFragment = checkNotNull(homepageFragment);
         mHomepageFragment.setPresenter(this);
     }

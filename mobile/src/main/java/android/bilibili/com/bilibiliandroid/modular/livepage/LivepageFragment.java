@@ -15,11 +15,10 @@ import android.view.ViewGroup;
 /**
  * Created by ZRY on 2016/7/20.
  */
-public class LivepageFragment extends BaseHomepageFragment implements LivepageContract.View{
+public class LivepageFragment extends BaseHomepageFragment<LivepageContract.Persenter> implements LivepageContract.View{
 
     private RecyclerView rv_livepage_allitem;
     private LivepageAdapter livepageAdapter;
-    private LivepageContract.Persenter mPersenter;
 
     @Nullable
     @Override

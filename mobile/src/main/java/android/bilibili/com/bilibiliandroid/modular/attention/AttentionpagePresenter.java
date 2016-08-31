@@ -1,13 +1,10 @@
 package android.bilibili.com.bilibiliandroid.modular.attention;
 
-import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageContract;
-import android.bilibili.com.bilibiliandroid.modular.homepage.HomepageFragment;
-
 /**
  * Created by ZRY on 2016/7/19.
  */
 public class AttentionpagePresenter implements AttentionpageContract.Persenter {
-    public AttentionpagePresenter(AttentionpageFragment attentionpageFragment) {
+    public AttentionpagePresenter(AttentionpageContract.View attentionpageFragment) {
         attentionpageFragment.setPresenter(this);
     }
 

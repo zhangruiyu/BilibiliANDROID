@@ -25,8 +25,7 @@ import android.view.ViewGroup;
 /**
  * Created by ZRY on 2016/7/19.
  */
-public class HomepageFragment extends BaseFragment implements HomepageContract.View {
-    private HomepageContract.Persenter mPersenter;
+public class HomepageFragment extends BaseFragment<HomepageContract.Persenter> implements HomepageContract.View {
     HomepageModel homepageModel = new HomepageModel();
     private AllpageAdapter allpageAdapter;
     private String[] stringArray;
@@ -57,10 +56,7 @@ public class HomepageFragment extends BaseFragment implements HomepageContract.V
         return homepageFragmentBinding.getRoot();
     }
 
-    @Override
-    public void setPresenter(HomepageContract.Persenter presenter) {
-        mPersenter = presenter;
-    }
+
 
     @Override
     public void setLoadingIndicator(boolean active) {
